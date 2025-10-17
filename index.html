@@ -160,16 +160,16 @@
             };
 
             return (
-                <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-4 sm:p-8">
-                    <div className="max-w-4xl mx-auto">
-                        <h1 className="text-2xl sm:text-4xl font-bold text-white text-center mb-6 sm:mb-8">
+                <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-3 sm:p-6">
+                    <div className="max-w-3xl mx-auto">
+                        <h1 className="text-xl sm:text-3xl font-bold text-white text-center mb-4 sm:mb-6">
                             Meditation Stages Monitor
                             <div className="text-sm sm:text-base font-normal text-white/60 mt-2">
                                 React App by Claude
                             </div>
                         </h1>
 
-                        <div className="bg-black/30 backdrop-blur-lg rounded-xl p-4 mb-6 border border-white/20">
+                        <div className="bg-black/30 backdrop-blur-lg rounded-xl p-3 mb-4 border border-white/20">
                             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                                 <div className="flex gap-3">
                                     <button
@@ -205,8 +205,8 @@
                             )}
                         </div>
                         
-                        <div className="bg-black/30 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-8 mb-6 sm:mb-8 border border-white/20">
-                            <h2 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4 text-center">Meditation Stage</h2>
+                        <div className="bg-black/30 backdrop-blur-lg rounded-xl p-3 sm:p-6 mb-4 sm:mb-6 border border-white/20">
+                            <h2 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3 text-center">Meditation Stage</h2>
                             <div className={`text-lg sm:text-2xl font-bold text-center px-2 ${getStatusColor()}`}>
                                 {getResultText()}
                             </div>
@@ -228,14 +228,14 @@
 
                         <div className="grid grid-cols-3 gap-4 sm:gap-8">
                             <div className="flex flex-col items-center">
-                                <h3 className="text-sm sm:text-xl font-semibold text-red-400 mb-2 sm:mb-4 text-center">Absorption</h3>
-                                <div className="relative h-48 sm:h-80 w-8 sm:w-12 bg-gray-800 rounded-full border border-red-400/50 sm:border-2 shadow-lg">
+                                <h3 className="text-sm sm:text-lg font-semibold text-red-400 mb-2 text-center">Absorption</h3>
+                                <div className="relative h-32 sm:h-56 w-6 sm:w-10 bg-gray-800 rounded-full border border-red-400/50 sm:border-2 shadow-lg">
                                     <div 
                                         className="absolute bottom-0 w-full bg-gradient-to-t from-red-600 to-red-400 rounded-full transition-all duration-300 ease-out"
                                         style={{ height: `${lever1}%` }}
                                     />
                                     <div 
-                                        className="absolute w-10 h-4 sm:w-16 sm:h-6 bg-red-500 rounded-lg border border-red-300 sm:border-2 cursor-pointer transition-all duration-300 hover:bg-red-400 shadow-lg"
+                                        className="absolute w-8 h-3 sm:w-12 sm:h-5 bg-red-500 rounded-lg border border-red-300 sm:border-2 cursor-pointer transition-all duration-300 hover:bg-red-400 shadow-lg"
                                         style={{ 
                                             bottom: `${lever1}%`, 
                                             left: '50%',
@@ -250,25 +250,25 @@
                                     value={lever1}
                                     onChange={(e) => setLever1(parseInt(e.target.value))}
                                     disabled={demoMode}
-                                    className="mt-2 sm:mt-4 w-16 sm:w-24 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="mt-2 w-14 sm:w-20 h-1.5 bg-gray-700 rounded-lg appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                     style={{
                                         background: `linear-gradient(to right, #ef4444 0%, #ef4444 ${lever1}%, #374151 ${lever1}%, #374151 100%)`
                                     }}
                                 />
-                                <div className="mt-2 text-xs text-red-300 text-center font-medium">
+                                <div className="mt-1.5 text-xs text-red-300 text-center font-medium">
                                     {getAbsorptionText()}
                                 </div>
                             </div>
 
                             <div className="flex flex-col items-center">
-                                <h3 className="text-sm sm:text-xl font-semibold text-green-400 mb-2 sm:mb-4 text-center">Peace</h3>
-                                <div className="relative h-48 sm:h-80 w-8 sm:w-12 bg-gray-800 rounded-full border border-green-400/50 sm:border-2 shadow-lg">
+                                <h3 className="text-sm sm:text-lg font-semibold text-green-400 mb-2 text-center">Peace</h3>
+                                <div className="relative h-32 sm:h-56 w-6 sm:w-10 bg-gray-800 rounded-full border border-green-400/50 sm:border-2 shadow-lg">
                                     <div 
                                         className="absolute bottom-0 w-full bg-gradient-to-t from-green-600 to-green-400 rounded-full transition-all duration-300 ease-out"
                                         style={{ height: `${lever2}%` }}
                                     />
                                     <div 
-                                        className="absolute w-10 h-4 sm:w-16 sm:h-6 bg-green-500 rounded-lg border border-green-300 sm:border-2 cursor-pointer transition-all duration-300 hover:bg-green-400 shadow-lg"
+                                        className="absolute w-8 h-3 sm:w-12 sm:h-5 bg-green-500 rounded-lg border border-green-300 sm:border-2 cursor-pointer transition-all duration-300 hover:bg-green-400 shadow-lg"
                                         style={{ 
                                             bottom: `${lever2}%`, 
                                             left: '50%',
@@ -283,25 +283,25 @@
                                     value={lever2}
                                     onChange={(e) => setLever2(parseInt(e.target.value))}
                                     disabled={demoMode}
-                                    className="mt-2 sm:mt-4 w-16 sm:w-24 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="mt-2 w-14 sm:w-20 h-1.5 bg-gray-700 rounded-lg appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                     style={{
                                         background: `linear-gradient(to right, #22c55e 0%, #22c55e ${lever2}%, #374151 ${lever2}%, #374151 100%)`
                                     }}
                                 />
-                                <div className="mt-2 text-xs text-green-300 text-center font-medium">
+                                <div className="mt-1.5 text-xs text-green-300 text-center font-medium">
                                     {getPeaceText()}
                                 </div>
                             </div>
 
                             <div className="flex flex-col items-center">
-                                <h3 className="text-sm sm:text-xl font-semibold text-blue-400 mb-2 sm:mb-4 text-center">Joy</h3>
-                                <div className="relative h-48 sm:h-80 w-8 sm:w-12 bg-gray-800 rounded-full border border-blue-400/50 sm:border-2 shadow-lg">
+                                <h3 className="text-sm sm:text-lg font-semibold text-blue-400 mb-2 text-center">Joy</h3>
+                                <div className="relative h-32 sm:h-56 w-6 sm:w-10 bg-gray-800 rounded-full border border-blue-400/50 sm:border-2 shadow-lg">
                                     <div 
                                         className="absolute bottom-0 w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-full transition-all duration-300 ease-out"
                                         style={{ height: `${lever3}%` }}
                                     />
                                     <div 
-                                        className="absolute w-10 h-4 sm:w-16 sm:h-6 bg-blue-500 rounded-lg border border-blue-300 sm:border-2 cursor-pointer transition-all duration-300 hover:bg-blue-400 shadow-lg"
+                                        className="absolute w-8 h-3 sm:w-12 sm:h-5 bg-blue-500 rounded-lg border border-blue-300 sm:border-2 cursor-pointer transition-all duration-300 hover:bg-blue-400 shadow-lg"
                                         style={{ 
                                             bottom: `${lever3}%`, 
                                             left: '50%',
@@ -316,19 +316,19 @@
                                     value={lever3}
                                     onChange={(e) => setLever3(parseInt(e.target.value))}
                                     disabled={demoMode}
-                                    className="mt-2 sm:mt-4 w-16 sm:w-24 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="mt-2 w-14 sm:w-20 h-1.5 bg-gray-700 rounded-lg appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                     style={{
                                         background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${lever3}%, #374151 ${lever3}%, #374151 100%)`
                                     }}
                                 />
-                                <div className="mt-2 text-xs text-blue-300 text-center font-medium">
+                                <div className="mt-1.5 text-xs text-blue-300 text-center font-medium">
                                     {getJoyText()}
                                 </div>
                             </div>
                         </div>
 
-                        <div className="text-center mt-4 sm:mt-6">
-                            <div className="text-sm sm:text-base text-white/80 font-medium">
+                        <div className="text-center mt-3 sm:mt-4">
+                            <div className="text-xs sm:text-sm text-white/80 font-medium">
                                 {getProgressText()}
                             </div>
                         </div>
