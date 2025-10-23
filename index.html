@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meditation Stages Monitor</title>
-    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -22,7 +22,6 @@
           const [demoMode, setDemoMode] = useState(true);
           const [demoStep, setDemoStep] = useState(0);
           const [demoMessage, setDemoMessage] = useState('');
-          const [hasStarted, setHasStarted] = useState(false);
 
           // Demo sequence with descriptions
           const demoSequence = [
@@ -54,7 +53,7 @@
                   setDemoStep(0);
                   setDemoMessage('');
                 }
-              }, 6000); // 6 seconds per step
+              }, 6000);
 
               return () => clearTimeout(timer);
             }
@@ -71,33 +70,26 @@
             setDemoMessage('');
           };
 
-          // Function to determine result text based on lever positions
           const getResultText = () => {
-            // Check for all zero - not meditating
             if (lever1 === 0 && lever2 === 0 && lever3 === 0) {
               return "😴 Dude, you are not meditating!";
             }
             
-            // Check for Samadhi - all at 100%
             if (lever1 === 100 && lever2 === 100 && lever3 === 100) {
               return "🕉️ Samadhi!!! - Complete absorption in divine consciousness";
             }
             
-            // Check for Dharana - any below 50%
             if (lever1 < 50 || lever2 < 50 || lever3 < 50) {
               return "🧘‍♂️ Dharana - Beginning concentration and focus";
             }
             
-            // Check for Dhyana - all above 50%
             if (lever1 >= 50 && lever2 >= 50 && lever3 >= 50) {
-              // Check for perfect balance
               if (Math.abs(lever1 - lever2) < 10 && Math.abs(lever2 - lever3) < 10) {
                 return "⚖️ Dhyana - Perfect Balance - Absorption, Peace, and Joy in harmony";
               }
               return "✨ Dhyana - Sustained meditation and mindful awareness";
             }
             
-            // Individual dominance states
             if (lever1 > lever2 + 20 && lever1 > lever3 + 20) {
               return "🎯 Deep Absorption - Focused concentration leads the way";
             } else if (lever2 > lever1 + 20 && lever2 > lever3 + 20) {
@@ -159,217 +151,198 @@
             return "😞 Heavy Heart";
           };
 
-          return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-4 sm:p-8">
-              <div className="max-w-4xl mx-auto">
-                <h1 className="text-2xl sm:text-4xl font-bold text-white text-center mb-6 sm:mb-8">
-                  Meditation Stages Monitor
-                  <div className="text-sm sm:text-base font-normal text-white/60 mt-2">
-                    React App by Claude
-                  </div>
-                </h1>
+          return React.createElement('div', { className: "min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-4 sm:p-8" },
+            React.createElement('div', { className: "max-w-4xl mx-auto" },
+              React.createElement('h1', { className: "text-2xl sm:text-4xl font-bold text-white text-center mb-6 sm:mb-8" },
+                "Meditation Stages Monitor",
+                React.createElement('div', { className: "text-sm sm:text-base font-normal text-white/60 mt-2" },
+                  "React App by Claude"
+                )
+              ),
 
-                {/* Demo Controls */}
-                <div className="bg-black/30 backdrop-blur-lg rounded-xl p-4 mb-6 border border-white/20">
-                  <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div className="flex flex-wrap gap-3 justify-center">
-                      <button
-                        onClick={startDemo}
-                        disabled={demoMode}
-                        className={`px-6 py-2 rounded-lg font-semibold transition-all ${
-                          demoMode 
-                            ? 'bg-gray-600 text-gray-400 cursor-not-allowed' 
-                            : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 shadow-lg hover:shadow-xl'
-                        }`}
-                      >
-                        {demoMode ? 'Demo Running...' : '▶️ Start Demo'}
-                      </button>
-                      {demoMode && (
-                        <button
-                          onClick={stopDemo}
-                          className="px-6 py-2 rounded-lg font-semibold bg-red-500 text-white hover:bg-red-600 transition-all shadow-lg"
-                        >
-                          ⏹️ Stop Demo
-                        </button>
-                      )}
-                      
-                        href="https://medium.com/@sundar2rajan/building-the-meditation-states-monitor-from-inner-yardstick-to-interactive-app-adca28e41481"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-6 py-2 rounded-lg font-semibold bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 transition-all shadow-lg hover:shadow-xl"
-                      >
-                        📖 Read Story
-                      </a>
-                    </div>
-                    {demoMode && (
-                      <div className="text-white/70 text-sm">
-                        Step {demoStep + 1} of {demoSequence.length}
-                      </div>
-                    )}
-                  </div>
-                  {demoMessage && (
-                    <div className="mt-4 p-3 bg-white/10 rounded-lg border border-white/20">
-                      <p className="text-white text-sm sm:text-base font-medium">{demoMessage}</p>
-                    </div>
-                  )}
-                </div>
-                
-                {/* Result Display */}
-                <div className="bg-black/30 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-8 mb-6 sm:mb-8 border border-white/20">
-                  <h2 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4 text-center">Meditation Stage</h2>
-                  <div className={`text-lg sm:text-2xl font-bold text-center px-2 ${getStatusColor()}`}>
-                    {getResultText()}
-                  </div>
-                  <div className="mt-3 sm:mt-4 grid grid-cols-3 gap-2 sm:gap-4 text-center">
-                    <div className="text-white">
-                      <div className="text-xs sm:text-sm opacity-70">Absorption</div>
-                      <div className="text-lg sm:text-xl font-bold text-red-400">{lever1}%</div>
-                    </div>
-                    <div className="text-white">
-                      <div className="text-xs sm:text-sm opacity-70">Peace</div>
-                      <div className="text-lg sm:text-xl font-bold text-green-400">{lever2}%</div>
-                    </div>
-                    <div className="text-white">
-                      <div className="text-xs sm:text-sm opacity-70">Joy</div>
-                      <div className="text-lg sm:text-xl font-bold text-blue-400">{lever3}%</div>
-                    </div>
-                  </div>
-                </div>
+              React.createElement('div', { className: "bg-black/30 backdrop-blur-lg rounded-xl p-4 mb-6 border border-white/20" },
+                React.createElement('div', { className: "flex flex-col sm:flex-row items-center justify-between gap-4" },
+                  React.createElement('div', { className: "flex flex-wrap gap-3 justify-center" },
+                    React.createElement('button', {
+                      onClick: startDemo,
+                      disabled: demoMode,
+                      className: `px-6 py-2 rounded-lg font-semibold transition-all ${
+                        demoMode 
+                          ? 'bg-gray-600 text-gray-400 cursor-not-allowed' 
+                          : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 shadow-lg hover:shadow-xl'
+                      }`
+                    }, demoMode ? 'Demo Running...' : '▶️ Start Demo'),
+                    demoMode && React.createElement('button', {
+                      onClick: stopDemo,
+                      className: "px-6 py-2 rounded-lg font-semibold bg-red-500 text-white hover:bg-red-600 transition-all shadow-lg"
+                    }, '⏹️ Stop Demo'),
+                    React.createElement('a', {
+                      href: "https://medium.com/@sundar2rajan/building-the-meditation-states-monitor-from-inner-yardstick-to-interactive-app-adca28e41481",
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      className: "px-6 py-2 rounded-lg font-semibold bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 transition-all shadow-lg hover:shadow-xl"
+                    }, '📖 Read Story')
+                  ),
+                  demoMode && React.createElement('div', { className: "text-white/70 text-sm" },
+                    `Step ${demoStep + 1} of ${demoSequence.length}`
+                  )
+                ),
+                demoMessage && React.createElement('div', { className: "mt-4 p-3 bg-white/10 rounded-lg border border-white/20" },
+                  React.createElement('p', { className: "text-white text-sm sm:text-base font-medium" }, demoMessage)
+                )
+              ),
 
-                {/* Levers */}
-                <div className="grid grid-cols-3 gap-4 sm:gap-8">
-                  {/* Lever 1 - Absorption */}
-                  <div className="flex flex-col items-center">
-                    <h3 className="text-sm sm:text-xl font-semibold text-red-400 mb-2 sm:mb-4 text-center">Absorption</h3>
-                    <div className="relative h-48 sm:h-80 w-8 sm:w-12 bg-gray-800 rounded-full border border-red-400/50 sm:border-2 shadow-lg">
-                      <div 
-                        className="absolute bottom-0 w-full bg-gradient-to-t from-red-600 to-red-400 rounded-full transition-all duration-300 ease-out"
-                        style={{ height: `${lever1}%` }}
-                      />
-                      <div 
-                        className="absolute w-10 h-4 sm:w-16 sm:h-6 bg-red-500 rounded-lg border border-red-300 sm:border-2 cursor-pointer transition-all duration-300 hover:bg-red-400 shadow-lg"
-                        style={{ 
-                          bottom: `${lever1}%`, 
-                          left: '50%',
-                          transform: 'translateY(50%) translateX(-50%)'
-                        }}
-                      />
-                    </div>
-                    <input
-                      type="range"
-                      min="0"
-                      max="100"
-                      value={lever1}
-                      onChange={(e) => setLever1(parseInt(e.target.value))}
-                      disabled={demoMode}
-                      className="mt-2 sm:mt-4 w-16 sm:w-24 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                      style={{
-                        background: `linear-gradient(to right, #ef4444 0%, #ef4444 ${lever1}%, #374151 ${lever1}%, #374151 100%)`
-                      }}
-                    />
-                    <div className="mt-2 text-xs text-red-300 text-center font-medium">
-                      {getAbsorptionText()}
-                    </div>
-                  </div>
+              React.createElement('div', { className: "bg-black/30 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-8 mb-6 sm:mb-8 border border-white/20" },
+                React.createElement('h2', { className: "text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4 text-center" }, "Meditation Stage"),
+                React.createElement('div', { className: `text-lg sm:text-2xl font-bold text-center px-2 ${getStatusColor()}` },
+                  getResultText()
+                ),
+                React.createElement('div', { className: "mt-3 sm:mt-4 grid grid-cols-3 gap-2 sm:gap-4 text-center" },
+                  React.createElement('div', { className: "text-white" },
+                    React.createElement('div', { className: "text-xs sm:text-sm opacity-70" }, "Absorption"),
+                    React.createElement('div', { className: "text-lg sm:text-xl font-bold text-red-400" }, `${lever1}%`)
+                  ),
+                  React.createElement('div', { className: "text-white" },
+                    React.createElement('div', { className: "text-xs sm:text-sm opacity-70" }, "Peace"),
+                    React.createElement('div', { className: "text-lg sm:text-xl font-bold text-green-400" }, `${lever2}%`)
+                  ),
+                  React.createElement('div', { className: "text-white" },
+                    React.createElement('div', { className: "text-xs sm:text-sm opacity-70" }, "Joy"),
+                    React.createElement('div', { className: "text-lg sm:text-xl font-bold text-blue-400" }, `${lever3}%`)
+                  )
+                )
+              ),
 
-                  {/* Lever 2 - Peace */}
-                  <div className="flex flex-col items-center">
-                    <h3 className="text-sm sm:text-xl font-semibold text-green-400 mb-2 sm:mb-4 text-center">Peace</h3>
-                    <div className="relative h-48 sm:h-80 w-8 sm:w-12 bg-gray-800 rounded-full border border-green-400/50 sm:border-2 shadow-lg">
-                      <div 
-                        className="absolute bottom-0 w-full bg-gradient-to-t from-green-600 to-green-400 rounded-full transition-all duration-300 ease-out"
-                        style={{ height: `${lever2}%` }}
-                      />
-                      <div 
-                        className="absolute w-10 h-4 sm:w-16 sm:h-6 bg-green-500 rounded-lg border border-green-300 sm:border-2 cursor-pointer transition-all duration-300 hover:bg-green-400 shadow-lg"
-                        style={{ 
-                          bottom: `${lever2}%`, 
-                          left: '50%',
-                          transform: 'translateY(50%) translateX(-50%)'
-                        }}
-                      />
-                    </div>
-                    <input
-                      type="range"
-                      min="0"
-                      max="100"
-                      value={lever2}
-                      onChange={(e) => setLever2(parseInt(e.target.value))}
-                      disabled={demoMode}
-                      className="mt-2 sm:mt-4 w-16 sm:w-24 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                      style={{
-                        background: `linear-gradient(to right, #22c55e 0%, #22c55e ${lever2}%, #374151 ${lever2}%, #374151 100%)`
-                      }}
-                    />
-                    <div className="mt-2 text-xs text-green-300 text-center font-medium">
-                      {getPeaceText()}
-                    </div>
-                  </div>
+              React.createElement('div', { className: "grid grid-cols-3 gap-4 sm:gap-8" },
+                // Lever 1
+                React.createElement('div', { className: "flex flex-col items-center" },
+                  React.createElement('h3', { className: "text-sm sm:text-xl font-semibold text-red-400 mb-2 sm:mb-4 text-center" }, "Absorption"),
+                  React.createElement('div', { className: "relative h-48 sm:h-80 w-8 sm:w-12 bg-gray-800 rounded-full border border-red-400/50 sm:border-2 shadow-lg" },
+                    React.createElement('div', {
+                      className: "absolute bottom-0 w-full bg-gradient-to-t from-red-600 to-red-400 rounded-full transition-all duration-300 ease-out",
+                      style: { height: `${lever1}%` }
+                    }),
+                    React.createElement('div', {
+                      className: "absolute w-10 h-4 sm:w-16 sm:h-6 bg-red-500 rounded-lg border border-red-300 sm:border-2 cursor-pointer transition-all duration-300 hover:bg-red-400 shadow-lg",
+                      style: { 
+                        bottom: `${lever1}%`, 
+                        left: '50%',
+                        transform: 'translateY(50%) translateX(-50%)'
+                      }
+                    })
+                  ),
+                  React.createElement('input', {
+                    type: "range",
+                    min: "0",
+                    max: "100",
+                    value: lever1,
+                    onChange: (e) => setLever1(parseInt(e.target.value)),
+                    disabled: demoMode,
+                    className: "mt-2 sm:mt-4 w-16 sm:w-24 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed",
+                    style: {
+                      background: `linear-gradient(to right, #ef4444 0%, #ef4444 ${lever1}%, #374151 ${lever1}%, #374151 100%)`
+                    }
+                  }),
+                  React.createElement('div', { className: "mt-2 text-xs text-red-300 text-center font-medium" },
+                    getAbsorptionText()
+                  )
+                ),
 
-                  {/* Lever 3 - Joy */}
-                  <div className="flex flex-col items-center">
-                    <h3 className="text-sm sm:text-xl font-semibold text-blue-400 mb-2 sm:mb-4 text-center">Joy</h3>
-                    <div className="relative h-48 sm:h-80 w-8 sm:w-12 bg-gray-800 rounded-full border border-blue-400/50 sm:border-2 shadow-lg">
-                      <div 
-                        className="absolute bottom-0 w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-full transition-all duration-300 ease-out"
-                        style={{ height: `${lever3}%` }}
-                      />
-                      <div 
-                        className="absolute w-10 h-4 sm:w-16 sm:h-6 bg-blue-500 rounded-lg border border-blue-300 sm:border-2 cursor-pointer transition-all duration-300 hover:bg-blue-400 shadow-lg"
-                        style={{ 
-                          bottom: `${lever3}%`, 
-                          left: '50%',
-                          transform: 'translateY(50%) translateX(-50%)'
-                        }}
-                      />
-                    </div>
-                    <input
-                      type="range"
-                      min="0"
-                      max="100"
-                      value={lever3}
-                      onChange={(e) => setLever3(parseInt(e.target.value))}
-                      disabled={demoMode}
-                      className="mt-2 sm:mt-4 w-16 sm:w-24 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                      style={{
-                        background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${lever3}%, #374151 ${lever3}%, #374151 100%)`
-                      }}
-                    />
-                    <div className="mt-2 text-xs text-blue-300 text-center font-medium">
-                      {getJoyText()}
-                    </div>
-                  </div>
-                </div>
+                // Lever 2
+                React.createElement('div', { className: "flex flex-col items-center" },
+                  React.createElement('h3', { className: "text-sm sm:text-xl font-semibold text-green-400 mb-2 sm:mb-4 text-center" }, "Peace"),
+                  React.createElement('div', { className: "relative h-48 sm:h-80 w-8 sm:w-12 bg-gray-800 rounded-full border border-green-400/50 sm:border-2 shadow-lg" },
+                    React.createElement('div', {
+                      className: "absolute bottom-0 w-full bg-gradient-to-t from-green-600 to-green-400 rounded-full transition-all duration-300 ease-out",
+                      style: { height: `${lever2}%` }
+                    }),
+                    React.createElement('div', {
+                      className: "absolute w-10 h-4 sm:w-16 sm:h-6 bg-green-500 rounded-lg border border-green-300 sm:border-2 cursor-pointer transition-all duration-300 hover:bg-green-400 shadow-lg",
+                      style: { 
+                        bottom: `${lever2}%`, 
+                        left: '50%',
+                        transform: 'translateY(50%) translateX(-50%)'
+                      }
+                    })
+                  ),
+                  React.createElement('input', {
+                    type: "range",
+                    min: "0",
+                    max: "100",
+                    value: lever2,
+                    onChange: (e) => setLever2(parseInt(e.target.value)),
+                    disabled: demoMode,
+                    className: "mt-2 sm:mt-4 w-16 sm:w-24 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed",
+                    style: {
+                      background: `linear-gradient(to right, #22c55e 0%, #22c55e ${lever2}%, #374151 ${lever2}%, #374151 100%)`
+                    }
+                  }),
+                  React.createElement('div', { className: "mt-2 text-xs text-green-300 text-center font-medium" },
+                    getPeaceText()
+                  )
+                ),
 
-                {/* Progress Text - underneath the levers */}
-                <div className="text-center mt-4 sm:mt-6">
-                  <div className="text-sm sm:text-base text-white/80 font-medium">
-                    {getProgressText()}
-                  </div>
-                </div>
+                // Lever 3
+                React.createElement('div', { className: "flex flex-col items-center" },
+                  React.createElement('h3', { className: "text-sm sm:text-xl font-semibold text-blue-400 mb-2 sm:mb-4 text-center" }, "Joy"),
+                  React.createElement('div', { className: "relative h-48 sm:h-80 w-8 sm:w-12 bg-gray-800 rounded-full border border-blue-400/50 sm:border-2 shadow-lg" },
+                    React.createElement('div', {
+                      className: "absolute bottom-0 w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-full transition-all duration-300 ease-out",
+                      style: { height: `${lever3}%` }
+                    }),
+                    React.createElement('div', {
+                      className: "absolute w-10 h-4 sm:w-16 sm:h-6 bg-blue-500 rounded-lg border border-blue-300 sm:border-2 cursor-pointer transition-all duration-300 hover:bg-blue-400 shadow-lg",
+                      style: { 
+                        bottom: `${lever3}%`, 
+                        left: '50%',
+                        transform: 'translateY(50%) translateX(-50%)'
+                      }
+                    })
+                  ),
+                  React.createElement('input', {
+                    type: "range",
+                    min: "0",
+                    max: "100",
+                    value: lever3,
+                    onChange: (e) => setLever3(parseInt(e.target.value)),
+                    disabled: demoMode,
+                    className: "mt-2 sm:mt-4 w-16 sm:w-24 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed",
+                    style: {
+                      background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${lever3}%, #374151 ${lever3}%, #374151 100%)`
+                    }
+                  }),
+                  React.createElement('div', { className: "mt-2 text-xs text-blue-300 text-center font-medium" },
+                    getJoyText()
+                  )
+                )
+              ),
 
-                {/* Instructions */}
-                <div className="mt-6 sm:mt-8 text-center text-white/70 px-2">
-                  <p className="text-sm sm:text-base">
-                    {demoMode 
-                      ? '🎬 Demo mode active - watch the sliders move through different meditation stages!' 
-                      : 'Adjust the levels of Absorption, Peace, and Joy to explore different meditation stages!'}
-                  </p>
-                  <p className="text-xs sm:text-sm mt-2">Samadhi (100% all), Dhyana (50%+ all), or Dharana (below 50% any).</p>
-                  {!demoMode && (
-                    <p className="text-xs sm:text-sm mt-2 text-purple-300">💡 Click "Start Demo" to see an automated walkthrough of all key states!</p>
-                  )}
-                  <div className="mt-4 text-xs text-white/50">
-                    💙 Share this meditation tool with friends on Facebook!
-                  </div>
-                </div>
-              </div>
-            </div>
+              React.createElement('div', { className: "text-center mt-4 sm:mt-6" },
+                React.createElement('div', { className: "text-sm sm:text-base text-white/80 font-medium" },
+                  getProgressText()
+                )
+              ),
+
+              React.createElement('div', { className: "mt-6 sm:mt-8 text-center text-white/70 px-2" },
+                React.createElement('p', { className: "text-sm sm:text-base" },
+                  demoMode 
+                    ? '🎬 Demo mode active - watch the sliders move through different meditation stages!' 
+                    : 'Adjust the levels of Absorption, Peace, and Joy to explore different meditation stages!'
+                ),
+                React.createElement('p', { className: "text-xs sm:text-sm mt-2" }, "Samadhi (100% all), Dhyana (50%+ all), or Dharana (below 50% any)."),
+                !demoMode && React.createElement('p', { className: "text-xs sm:text-sm mt-2 text-purple-300" }, "💡 Click \"Start Demo\" to see an automated walkthrough of all key states!"),
+                React.createElement('div', { className: "mt-4 text-xs text-white/50" },
+                  "💙 Share this meditation tool with friends on Facebook!"
+                )
+              )
+            )
           );
         };
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<MeditationStagesApp />);
+        ReactDOM.render(
+          React.createElement(MeditationStagesApp),
+          document.getElementById('root')
+        );
     </script>
 </body>
 </html>
