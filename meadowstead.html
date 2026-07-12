@@ -20,11 +20,12 @@
   --r-lg:18px; --r-md:14px; --r-sm:10px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+button,.plot,.seed{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 body{
   font-family:'Nunito',sans-serif;font-weight:700;color:var(--ink);
-  background:var(--page);min-height:100vh;padding:16px;
+  background:var(--page);min-height:100vh;padding:12px 16px 4px;
 }
-.wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:11px}
 
 /* ---------- Header ---------- */
 .topbar{
@@ -37,7 +38,7 @@ body{
 .pills{margin-left:auto;display:flex;gap:9px;flex-wrap:wrap}
 .pill{
   background:var(--pill);border:2px solid var(--pill-border);border-radius:999px;
-  padding:7px 16px;font-size:15px;font-weight:800;display:flex;align-items:center;gap:7px;
+  padding:4px 12px;font-size:13px;font-weight:800;display:flex;align-items:center;gap:6px;
   white-space:nowrap;
 }
 
@@ -47,21 +48,21 @@ body{
   flex:0 0 260px;background:var(--panel);border:3px solid var(--panel-border);
   border-radius:var(--r-lg);padding:18px 16px;
 }
-.rightcol{flex:1;display:flex;flex-direction:column;gap:14px;min-width:0}
+.rightcol{flex:1;display:flex;flex-direction:column;gap:10px;min-width:0}
 
 /* ---------- Seed market ---------- */
 .sidebar h2{font-family:'Fredoka',sans-serif;font-weight:600;font-size:19px;margin-bottom:12px}
 .seed{
-  width:100%;text-align:left;font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;
-  color:var(--ink);background:var(--panel);border:2px solid var(--soil-light);
-  border-radius:var(--r-sm);padding:11px 13px;margin-bottom:9px;cursor:pointer;
-  display:flex;align-items:center;gap:8px;transition:background .12s, transform .08s;
+  width:100%;text-align:left;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;
+  color:var(--ink);background:#FAF0D9;border:2px solid #C9A166;
+  border-radius:var(--r-sm);padding:7px 10px;margin-bottom:7px;cursor:pointer;
+  display:flex;align-items:center;gap:6px;transition:background .12s, transform .08s;
 }
-.seed:hover{background:#FDF0DA}
+.seed:hover{background:#FCEBC4}
 .seed.sel{background:var(--gold);border-color:var(--orange-dark)}
 .seed.locked{opacity:.45;cursor:not-allowed}
-.seed .em{font-size:19px}
-.seed small{font-weight:700;color:var(--ink-soft);font-size:13px}
+.seed .em{font-size:16px}
+.seed small{font-weight:700;color:var(--ink-soft);font-size:11.5px}
 .seed.sel small{color:var(--soil-dark)}
 .sidenote{font-size:13.5px;font-weight:600;color:var(--ink-soft);line-height:1.5;margin:6px 0 14px}
 .divider{border-top:2px dashed #E0D3BC;margin:14px 0}
@@ -70,15 +71,15 @@ body{
 .taskbar{height:10px;background:#EBE0CB;border-radius:6px;overflow:hidden}
 .taskbar div{height:100%;background:var(--gold);border-radius:6px;transition:width .4s}
 .task .claim{
-  margin-top:10px;width:100%;font-family:'Fredoka',sans-serif;font-weight:600;font-size:14px;
+  margin-top:8px;width:100%;font-family:'Fredoka',sans-serif;font-weight:600;font-size:12.5px;
   background:var(--gold);border:2px solid var(--orange-dark);color:var(--ink);
-  border-radius:var(--r-sm);padding:9px;cursor:pointer;display:none;
+  border-radius:var(--r-sm);padding:6px;cursor:pointer;display:none;
 }
 .task .claim.show{display:block}
 .startover{
-  margin-top:14px;width:100%;font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;
+  margin-top:12px;width:100%;font-family:'Nunito',sans-serif;font-weight:800;font-size:12.5px;
   background:#F6DECE;border:2px solid #DDBBA3;color:#B4562F;
-  border-radius:var(--r-sm);padding:11px;cursor:pointer;
+  border-radius:var(--r-sm);padding:8px;cursor:pointer;
 }
 .startover:hover{background:#F2D2BC}
 
@@ -120,9 +121,9 @@ body{
 /* ---------- Action buttons ---------- */
 .actions{display:flex;gap:14px}
 .actionbtn{
-  flex:1;font-family:'Fredoka',sans-serif;font-weight:600;font-size:17px;color:var(--ink);
-  background:var(--lime);border:3px solid var(--lime-dark);border-radius:var(--r-md);
-  padding:15px 10px;cursor:pointer;transition:transform .08s, filter .12s;
+  flex:1;font-family:'Fredoka',sans-serif;font-weight:600;font-size:15px;color:var(--ink);
+  background:var(--lime);border:2px solid var(--lime-dark);border-radius:var(--r-sm);
+  padding:11px 10px;cursor:pointer;transition:transform .08s, filter .12s;
 }
 .actionbtn:hover{filter:brightness(1.05)}
 .actionbtn:active{transform:translateY(2px)}
@@ -130,15 +131,15 @@ body{
 /* ---------- How to play ---------- */
 .howto{
   background:var(--panel);border:3px solid var(--panel-border);border-radius:var(--r-lg);
-  padding:18px 20px;
+  padding:9px 14px 11px;
 }
-.howto h2{font-family:'Fredoka',sans-serif;font-weight:600;font-size:20px;margin-bottom:12px}
-.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.howto h2{font-family:'Fredoka',sans-serif;font-weight:600;font-size:14px;margin-bottom:6px}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:5px}
 .tip{
-  background:#F6EEDC;border-radius:var(--r-sm);padding:10px 14px;
-  font-size:14px;font-weight:700;display:flex;align-items:center;gap:10px;
+  background:#F6EEDC;border-radius:8px;padding:4px 10px;
+  font-size:11.5px;font-weight:700;display:flex;align-items:center;gap:7px;
 }
-.tip .em{font-size:17px}
+.tip .em{font-size:13px}
 
 /* ---------- Toast ---------- */
 .toast{
@@ -155,6 +156,14 @@ body{
   .grid{grid-template-columns:repeat(4,1fr)}
   .tips{grid-template-columns:1fr}
   .actions{flex-direction:column}
+}
+@media (max-width:430px){
+  body{padding:10px}
+  .field{padding:10px}
+  .grid{gap:8px}
+  .plot .em{font-size:26px}
+  .plot .timer{font-size:10.5px;padding:1px 6px;top:5px;right:5px}
+  .logo h1{font-size:22px}
 }
 </style>
 </head>
@@ -200,14 +209,12 @@ body{
       <div class="howto">
         <h2>How to play</h2>
         <div class="tips">
-          <div class="tip"><span class="em">🌱</span> Pick a seed in the market, then click a brown plot to plant it</div>
-          <div class="tip"><span class="em">💧</span> Click a growing crop to select it, then water it — watering cuts grow time by a third</div>
-          <div class="tip"><span class="em">✨</span> Crops glow gold when ripe — click them or use "Harvest all ready"</div>
-          <div class="tip"><span class="em">⭐</span> Harvests earn coins and XP — level up to unlock better seeds</div>
-          <div class="tip"><span class="em">🔓</span> Green plots unlock automatically as you level up</div>
-          <div class="tip"><span class="em">🚰</span> Water refills over time (1 drop every 40s, up to 8) — spend it wisely</div>
-          <div class="tip"><span class="em">📅</span> Finish the daily task for bonus coins — a fresh one arrives each day</div>
-          <div class="tip"><span class="em">💾</span> Everything saves automatically, and crops keep growing while you're away</div>
+          <div class="tip"><span class="em">🌱</span> Pick a seed, then click a brown plot to plant it</div>
+          <div class="tip"><span class="em">💧</span> Click a growing crop, then water it — cuts grow time (refills 1 drop / 40s)</div>
+          <div class="tip"><span class="em">✨</span> Crops glow gold when ripe — click them or "Harvest all ready"</div>
+          <div class="tip"><span class="em">⭐</span> Harvests earn coins and XP — level up for new seeds and plots</div>
+          <div class="tip"><span class="em">📅</span> Finish the daily task for bonus coins — a new one each day</div>
+          <div class="tip"><span class="em">💾</span> Auto-saves, and crops keep growing while you're away</div>
         </div>
       </div>
     </div>
@@ -223,10 +230,10 @@ body{
 const CROPS = [
   {id:"carrot",  name:"Carrot",  em:"🥕", cost:4,  time:25,  sell:7,  lvl:1},
   {id:"corn",    name:"Corn",    em:"🌽", cost:10, time:55,  sell:18, lvl:1},
-  {id:"berry",   name:"Berry",   em:"🍇", cost:18, time:95,  sell:34, lvl:2},
-  {id:"pumpkin", name:"Pumpkin", em:"🎃", cost:35, time:150, sell:70, lvl:3},
-  {id:"melon",   name:"Melon",   em:"🍉", cost:60, time:210, sell:130, lvl:4},
-  {id:"gapple",  name:"Gold apple", em:"🍎", cost:110, time:300, sell:260, lvl:5},
+  {id:"berry",   name:"Berry",   em:"🍇", cost:18, time:95,  sell:34, lvl:1},
+  {id:"pumpkin", name:"Pumpkin", em:"🎃", cost:35, time:150, sell:70, lvl:1},
+  {id:"melon",   name:"Melon",   em:"🍉", cost:60, time:210, sell:130, lvl:2},
+  {id:"gapple",  name:"Gold apple", em:"🍎", cost:110, time:300, sell:260, lvl:4},
 ];
 
 const LVL_XP = [0, 100, 250, 480, 800, 1250, 1850];
@@ -238,7 +245,10 @@ const SAVE_KEY = "meadowsteadSave_v1";
 
 let S = null;
 
-function todayStr(){ return new Date().toISOString().slice(0, 10); }
+function todayStr(){
+  const d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
 
 function freshState(){
   const plots = [];
